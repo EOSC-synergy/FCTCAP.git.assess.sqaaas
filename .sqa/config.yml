@@ -1,0 +1,48 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/allavona/FCTCAP:
+      branch: main
+      repo: https://github.com/allavona/FCTCAP.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/allavona/FCTCAP git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-silver-jackal.sh
+        container: qc.acc_stinky-aquamarine-cuscus
+  QC.Doc:
+    repos:
+      github.com/allavona/FCTCAP find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-pink-oyster.sh
+        container: qc.doc_droopy-plum-crocodile
+      github.com/allavona/FCTCAP git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-magnolia-dolphin.sh
+        container: qc.doc_crappy-myrtle-guppy
+  QC.Lic:
+    repos:
+      github.com/allavona/FCTCAP licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-flax-quoll.sh
+        container: qc.lic_gloppy-orchid-penguin
+  QC.Sty:
+    repos:
+      github.com/allavona/FCTCAP jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-zucchini-antelope.sh
+        container: qc.sty_fuzzy-flax-kudu
+  QC.Ver:
+    repos:
+      github.com/allavona/FCTCAP get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pokey-pumpkin-cheetah.sh
+        container: qc.ver_goopy-periwinkle-alligator
+timeout: 5400
